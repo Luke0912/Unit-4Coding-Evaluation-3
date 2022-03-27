@@ -1,21 +1,21 @@
 const mongoose = require("mongoose")
 
-const bookSchmea = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({
     likes:{type:Number,required:true,default:0
     },
-    coverImage:{type:String,required:true,unique:true},
-    content:{type:String,required:true},
+    coverImage:[{type:String,required:true,unique:true}],
+    Content:{type:String,required:true},
     AuthorId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"user",
         required:true
     },
-    publicationID:{
+    PublicationId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"publication",
         required:true
     },
-    commentId:{
+    CommentId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"comment",
         required:true
@@ -23,4 +23,4 @@ const bookSchmea = new mongoose.Schema({
 },{
     timestamps:{require:true}
 })
-module.exports= mongoose.model("book".bookSchmea)
+module.exports= mongoose.model("book",bookSchema)
